@@ -87,7 +87,7 @@ class Export(models.Model):
     def _get_filtered_tasks(self, tasks, task_filter_options=None):
         """
         task_filter_options: None or Dict({
-            tab_id: optional int
+            view: optional int id or View
 
             skipped: optional None or str:("include|exclude")
 
@@ -97,7 +97,7 @@ class Export(models.Model):
         """
         if not isinstance(task_filter_options, dict):
             return tasks
-        if 'tab_id' in task_filter_options:
+        if 'view' in task_filter_options:
             pass
         if 'skipped' in task_filter_options:
             value = task_filter_options['skipped']

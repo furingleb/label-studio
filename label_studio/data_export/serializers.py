@@ -9,6 +9,7 @@ from tasks.models import Annotation, Task
 from tasks.serializers import PredictionSerializer
 from users.models import User
 from .models import Export
+from data_manager.models import View
 
 
 class CompletedBySerializer(serializers.ModelSerializer):
@@ -57,3 +58,21 @@ class ExportSerializer(serializers.ModelSerializer):
             'counters',
         ]
         fields = read_only
+
+
+class TaskFilterOptionsSerializer(serializers.Serializer):
+    view_id = serializers.IntegerField()
+
+class AnnotationFilterOptionsSerializer(serializers.Serializer):
+    pass
+
+class SerializationOptionsSerializer(serializers.Serializer):
+    pass
+
+class ExportCreateSerializer(ExportSerializer):
+    class Meta(ExportSerializer.Meta):
+        pass
+
+    task_filter_options = TaskFilterOptionsSerializer()
+    annotation_filter_options = AnnotationFilterOptionsSerializer()
+    serialization_options = SerializationOptionsSerializer()
